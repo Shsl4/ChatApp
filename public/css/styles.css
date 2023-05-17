@@ -1,0 +1,59 @@
+
+.default-div {
+    background-color: white;
+    max-width: 500pt;
+    min-width: 200pt;
+    min-height: 300pt;
+    max-height: 400pt;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    align-content: space-around;
+    gap: 10pt;
+    flex-grow: 1;
+    border-radius: 15pt;
+    font-family: "Open Sans", sans-serif;
+    outline: aquamarine thick;
+}
+
+.button{
+    border: none;
+    padding: 10pt;
+    border-radius: 5pt;
+    min-width: 150pt;
+    min-height: 25pt;
+    font-size: 10pt;
+    font-family: "Open Sans", sans-serif;
+}
+
+.button--primary{
+    background-color: #129affff;
+    color: white;
+}
+
+.button--secondary{
+    background-color: #f2f5f9ff;
+    color: black;
+}
+
+.root {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #202020ff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.body-style{
+    margin: 0;
+    padding: 0;
+}

@@ -1,0 +1,23 @@
+[
+	{
+		"user": "me",
+		"userSalt": "5b2252df9ff9f26a",
+		"hashedPassword": "5b3aa293c191338512fb58c7f2e11d697ac99d9591258027de7cfb845a497d2f",
+		"sessionCookie": null,
+		"expiryDate": 1684246528785
+	},
+	{
+		"user": "leo",
+		"userSalt": "5ed054c93138c4ee",
+		"hashedPassword": "422ac808c63439be3ea127727104a3abefd3cdca401e0af7d80ce96296a941cf",
+		"sessionCookie": null,
+		"expiryDate": 1684312877924
+	},
+	{
+		"user": "Cool",
+		"userSalt": "ea265d43df1971a4",
+		"hashedPassword": "695b7381f07a5e1b24a0b6da6ac2b1456622185db86f11accc9d66cb45d06b3a",
+		"sessionCookie": null,
+		"expiryDate": 1684316370348
+	}
+]
