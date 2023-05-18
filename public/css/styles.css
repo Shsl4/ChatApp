@@ -29,7 +29,9 @@
 
 .button--primary{
     background-color: #129affff;
-    color: white;
+    color: rgb(0, 0, 0);
+    
+
 }
 
 .button--secondary{
