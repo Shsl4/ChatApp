@@ -59,3 +59,15 @@
     margin: 0;
     padding: 0;
 }
+
+.salon{
+    text-align: center;
+}
+
+.box{
+    
+    position: absolute;
+    bottom: 10px;
+    left: 45%;
+    
+}

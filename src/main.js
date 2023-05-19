@@ -27,7 +27,7 @@ app.get('/salon', (request, response) => {
 app.get('/login', (request, response) => {
 
     if (database.authenticate(request.cookies['session_cookie'])){
-        response.redirect('/login_confirm');
+        response.redirect('/salon');
         return;
     }
 
@@ -37,7 +37,7 @@ app.get('/login', (request, response) => {
 
 app.get('/logout', (request, response) => {
     if (database.deauthenticate(request.cookies['session_cookie'])){
-        response.redirect('/logout_confirm');
+        response.redirect('/');
         return;
     }
 
@@ -59,7 +59,7 @@ app.get('/register', (request, response) => {
 app.get('/login_confirm', (request, response) => {
 
     if (!database.authenticate(request.cookies['session_cookie'])){
-        response.redirect('/login');
+        response.redirect('/salon');
         return;
     }
 

@@ -13,13 +13,17 @@
         login(user, password);
     }
 </script>
-<body>
-    <p>Login Page!</p>
-    <label>Username: <input id="user"></label>
-    <br>
-    <label>Password: <input id="password" type="password"></label>
-    <br><br>
-    <button class="button button--primary" onclick="invokeLogin(document.getElementById('user').value, document.getElementById('password').value)">Login</button>
-    <button class="button button--secondary" onclick="window.location.replace('http://localhost:8080' + '/register');">Create an account</button>
+<body class="body-style">
+    <div class ='root'>
+        <div class='default-div'>
+            <p>Login Page!</p>
+            <label>Username: <input id="user"></label>
+            <br>
+            <label>Password: <input id="password" type="password"></label>
+            <br><br>
+            <button class="button button--primary" onclick="invokeLogin(document.getElementById('user').value, document.getElementById('password').value)">Login</button>
+            <button class="button button--secondary" onclick="window.location.replace('http://localhost:8080' + '/register');">Create an account</button>
+        </div>
+    </div>
 </body>
 </html>
