@@ -20,6 +20,10 @@ app.get('/', (request, response) => {
     Utilities.renderEJS('index.ejs', response);
 });
 
+app.get('/salon', (request, response) => {
+    Utilities.renderEJS('./salon.ejs', response)
+});
+
 app.get('/login', (request, response) => {
 
     if (database.authenticate(request.cookies['session_cookie'])){
@@ -32,7 +36,6 @@ app.get('/login', (request, response) => {
 });
 
 app.get('/logout', (request, response) => {
-
     if (database.deauthenticate(request.cookies['session_cookie'])){
         response.redirect('/logout_confirm');
         return;
@@ -88,7 +91,7 @@ socketServer.sockets.on('connection', (socket) => {
 
         try{
             socket.emit('auth_cookie', database.createUser(username, password));
-            socket.emit('redirect', '/login_confirm');
+            socket.emit('redirect', '/salon');
             database.saveConfig();
         }
         catch (e){
@@ -101,7 +104,7 @@ socketServer.sockets.on('connection', (socket) => {
 
         try{
             socket.emit('auth_cookie', database.tryLogin(username, password));
-            socket.emit('redirect', '/login_confirm');
+            socket.emit('redirect', '/salon');
             database.saveConfig();
         }
         catch (e){

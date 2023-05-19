@@ -19,5 +19,12 @@
 		"hashedPassword": "695b7381f07a5e1b24a0b6da6ac2b1456622185db86f11accc9d66cb45d06b3a",
 		"sessionCookie": null,
 		"expiryDate": 1684316370348
+	},
+	{
+		"user": "Emma",
+		"userSalt": "c4ad155b3c8f5ba8",
+		"hashedPassword": "df50227109f9c2973d9749fda5cf95a20f5964f14224ec907aed5ba48d8c50c6",
+		"sessionCookie": "9da15e4414e985faf0f24103446a789dd64f063cad34c0e28871ded15d897989e59377f6e2377ffbf23bbad51aa7c6269c614f82094b3d7a189d4b85f1bfddae65ea669f8c6126d5413b86e31aed82ede89d519e0b03d6c5fa217e813dffb6a6ac1ceeb812c420313dcd672d78d7edcf67d9737d5586080d2e5f67257e77fb16",
+		"expiryDate": 1685102810197
 	}
 ]
