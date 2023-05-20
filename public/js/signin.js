@@ -61,6 +61,7 @@ passwordField.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
         event.preventDefault();
         if(usernameField.value && passwordField.value){
+            clearFocus();
             invokeSignIn();
         }
     }

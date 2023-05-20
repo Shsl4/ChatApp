@@ -6,6 +6,9 @@ function element(id){
     return document.getElementById(id);
 }
 
+function clearFocus() {
+    document.activeElement.blur();
+}
 
 const successColor = cssVariable('--success-color');
 const errorColor = cssVariable('--error-color');
@@ -28,16 +31,12 @@ function setBorderColor(elem, color){
 
 let socket = io("http://localhost:8080");
 
-socket.on("connect", () => {
-    console.log("Connected!");
-});
-
 socket.on('redirect', (page) => {
     window.location.assign("http://localhost:8080" + page);
 });
 
 socket.on('auth_cookie', cookie => {
-    document.cookie = 'session_cookie=' + cookie;
+    document.cookie = 'session_cookie=' + cookie + '; SameSite=strict';
 });
 
 function register(user, password){

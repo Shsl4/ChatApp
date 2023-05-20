@@ -42,6 +42,8 @@ socket.on('user_result', (success, user) => {
 
     usernameVerified = success;
 
+    setBorderColor(usernameField, success ? successColor : errorColor);
+
     refreshButton();
 
 });
