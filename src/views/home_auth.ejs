@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ChatApp</title>
+</head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Plus Jakarta Sans">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/auth.css">
+<link rel="stylesheet" href="css/input.css">
+<script src="https://kit.fontawesome.com/a345e0e583.js" crossorigin="anonymous"></script>
+
+<body class="body-root center-flex">
+
+<div class="content-div center-flex">
+
+    <div class="fields-div center-flex" style="padding: 10pt;">
+
+        <div class="info-div label-style">
+            <i class="fa-solid fa-screwdriver-wrench fa-10x"></i>
+        </div>
+
+        <label style="font-size: 50px; padding: 0;" class="label-style">Work in progress</label>
+
+        <div style="flex-direction: row">
+            <label style="font-size: 25px; padding: 0;" class="label-style">You are logged in as </label>
+            <label style="font-size: 25px; padding: 0;" class="label-style animated-gradient-text"><%=username%></label>
+            <label style="font-size: 25px; padding: 0;" class="label-style">but there is nothing to do... Yet!</label>
+        </div>
+
+        <button id='signout' style="min-width: 250pt; margin-top: 7.5pt" onclick="document.location.assign('/signout')" class="confirm-button animated-gradient">Sign Out</button>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ChatApp | Sign Up</title>
+</head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Plus Jakarta Sans">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/auth.css">
+<link rel="stylesheet" href="css/input.css">
+<script src="socket.io/socket.io.js"></script>
+<script src="https://kit.fontawesome.com/a345e0e583.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/socket.js"></script>
+<body class="body-root center-flex">
+
+    <div class="content-div center-flex">
+
+        <div class="fields-div center-flex">
+
+            <div class="info-div animated-gradient-text">
+                <i class="fa-solid fa-comment fa-8x"></i>
+            </div>
+
+            <div style="align-self: flex-start; display:flex; align-items:center; flex-direction: row; gap: 5pt">
+                <h2 style="padding: 0; margin: 0;" class="text-style">Welcome to </h2>
+                <h1 style="background-clip:text; -webkit-background-clip: text; padding: 0; margin: 0; color: transparent; font-size: 35pt;"
+                    class="text-style animated-gradient">ChatApp</h1>
+            </div>
+
+            <div style="min-width: 100%; gap: 0" class="left-flex">
+                <p style="font-size: 17px; margin: 0;" class="label-style">
+                    Create your account to meet and
+                </p>
+                <p style="font-size: 17px; margin: 0;" class="label-style">
+                    chat with other people.
+                </p>
+            </div>
+
+            <div class="left-flex">
+
+                <label for="username" class="label-style">Username</label>
+
+                <div class="grid">
+
+                    <input id="username" class="input-style text-style default-border" placeholder="Username"></input>
+                    <i class="fa-solid fa-user icon"></i>
+
+                </div>
+
+                <div id="username-status" class="info-div default-hidden">
+                    <i class="fa-sharp fa-solid fa-circle-info"></i>
+                    <label id="username-status-label">This username is already taken</label>
+                </div>
+
+            </div>
+
+            <div style="width: 100%">
+
+                <p class="label-style">Username requirements: </p>
+
+                <ul class="label-style">
+                    <li id="user-requirement-1">6 to 16 characters long</li>
+                    <li id="user-requirement-2">Only alphanumeric characters or _ and -</li>
+                </ul>
+
+            </div>
+
+            <div class="left-flex">
+
+                <label for="password" class="label-style">Password</label>
+
+                <div class="grid">
+                    <input id="password" class="input-style text-style default-border" type="password" placeholder="Password">
+                    <i class="fa-solid fa-lock icon"></i>
+                </div>
+
+            </div>
+
+            <div style="width: 100%">
+
+                <p class="label-style">Password requirements: </p>
+
+                <ul class="label-style">
+                    <li id="password-requirement-1">At least 8 characters</li>
+                    <li id="password-requirement-2">At least 1 number</li>
+                    <li id="password-requirement-3">At least 1 capital letter</li>
+                    <li id="password-requirement-4">At least 1 special character (*/?!@#$...)</li>
+                    <li id="password-requirement-5">Cannot contain the username.</li>
+                </ul>
+
+            </div>
+
+            <div class="left-flex">
+
+                <label for="password-verify" class="label-style">Verify Password</label>
+
+                <div class="grid">
+                    <input id="password-verify" class="input-style text-style default-border" type="password" placeholder="Verify password">
+                    <i class="fa-solid fa-repeat icon"></i>
+                </div>
+
+                <div id="password-mismatch" class="info-div error-color default-hidden">
+                    <i class="fa-sharp fa-solid fa-circle-info"></i>
+                    <label>Passwords do not match</label>
+                </div>
+
+            </div>
+
+            <button id='signup' onclick="invokeRegister()" class="confirm-button animated-gradient" disabled>Sign Up</button>
+
+            <div class="label-style" style="flex-direction: row; gap: 10pt">
+                <label>Already have an account?</label>
+                <button onclick="document.location.assign('/signin')" class="animated-gradient label-style" style="background-clip:text; border:0; -webkit-background-clip: text; color: transparent;">Sign in</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="video-div center-flex">
+        <video class="video-style" autoplay muted playsinline loop>
+            <source src="assets/videos/signup-background.mp4" type="video/mp4">
+        </video>
+    </div>
+
+</body>
+<script type="text/javascript" src="js/signup.js"></script>
+</html>

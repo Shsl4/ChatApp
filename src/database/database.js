@@ -1,5 +1,6 @@
 const { createHash, randomBytes } = require('crypto');
 const fs = require('fs');
+const {resolve} = require("path");
 
 class PasswordError extends Error {}
 
@@ -52,7 +53,7 @@ class User {
             return this.#sessionCookie;
         }
 
-        this.#sessionCookie = null;
+        this.clearSessionCookie();
 
         return null;
 
@@ -93,7 +94,7 @@ class Database {
 
     constructor() {
 
-        fs.readFile('config/users.json','utf8', (err, data) => {
+        fs.readFile(resolve(__dirname + '/../../config/users.json'),'utf8', (err, data) => {
 
             if(err) return;
 
@@ -122,11 +123,8 @@ class Database {
         if (!password)
             throw new InvalidPasswordError('The password cannot be empty.');
 
-        this.#userDatabase.forEach(user => {
-            if (user.userName().toLowerCase() === username.toLowerCase()){
-                throw new UserExistsError("A user named " + username + " already exists.");
-            }
-        });
+        if(this.userExists(username))
+            throw new UserExistsError("A user named " + username + " already exists.");
 
         let new_user = new User(username, password);
 
@@ -140,7 +138,7 @@ class Database {
 
     }
 
-    tryLogin(username, password) {
+    trySignIn(username, password) {
 
         let user = this.#userDatabase.find(u => u.userName().toLowerCase() === username.toLowerCase());
 
@@ -158,17 +156,17 @@ class Database {
 
     authenticate(cookie){
 
-        if (cookie == null) return null;
+        if (!cookie) return null;
 
         let user = this.#userDatabase.find(u => u.getSessionCookie() === cookie);
 
-        return (user === undefined) ? null : user;
+        return (!user) ? null : user;
 
     }
 
     deauthenticate(cookie){
 
-        if (cookie == null) return false;
+        if (!cookie) return false;
 
         let user = this.#userDatabase.find(u => u.getSessionCookie() === cookie);
 
@@ -184,7 +182,7 @@ class Database {
 
     saveConfig(){
 
-        fs.writeFile('config/users.json', JSON.stringify(this.#userDatabase, null, '\t'), 'utf8', (err) =>{
+        fs.writeFile(resolve(__dirname + '/../../config/users.json'), JSON.stringify(this.#userDatabase, null, '\t'), 'utf8', (err) =>{
 
             if(err){
                 console.log(err);
@@ -194,6 +192,21 @@ class Database {
 
     }
 
+    userExists(username) {
+
+        for (var i = 0; i < this.#userDatabase.length; ++i){
+
+            const user = this.#userDatabase[i];
+
+            if (user.userName().toLowerCase() === username.toLowerCase()){
+                return true;
+            }
+
+        }
+
+        return false;
+
+    }
 }
 
 module.exports = {

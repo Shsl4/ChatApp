@@ -1,4 +1,3 @@
-const path = require("path");
 const http = require('http')
 const express = require('express');
 const { Server } = require('socket.io');
@@ -6,67 +5,58 @@ const Utilities = require("./utils/utilities");
 const { Database, User, UserExistsError} = require('./database/database')
 const serveStatic = require("serve-static");
 const cookieParser = require('cookie-parser');
+const {resolve} = require("path");
 
 const app = express();
 const httpServer = http.Server(app);
 const socketServer = new Server(httpServer);
 const database = new Database();
-let p = path.resolve(__dirname + '/../public')
 
-app.use(serveStatic(p));
+app.use(serveStatic(resolve(__dirname + '/../public')));
 app.use(cookieParser());
 
 app.get('/', (request, response) => {
-    Utilities.renderEJS('index.ejs', response);
+
+    const user = database.authenticate(request.cookies['session_cookie']);
+
+    if (user){
+        Utilities.renderEJS('home_auth.ejs', response, { username: user.userName() });
+    }
+    else{
+        Utilities.renderEJS('home_public.ejs', response);
+    }
+
 });
 
-app.get('/login', (request, response) => {
+app.get('/signin', (request, response) => {
 
     if (database.authenticate(request.cookies['session_cookie'])){
-        response.redirect('/login_confirm');
+        response.redirect('/');
         return;
     }
 
-    Utilities.renderEJS('login.ejs', response);
+    Utilities.renderEJS('signin.ejs', response);
 
 });
 
-app.get('/logout', (request, response) => {
+app.get('/signout', (request, response) => {
 
-    if (database.deauthenticate(request.cookies['session_cookie'])){
-        response.redirect('/logout_confirm');
-        return;
+    if(database.authenticate(request.cookies['session_cookie'])){
+        database.deauthenticate(request.cookies['session_cookie']);
     }
 
     response.redirect('/');
 
 });
 
-app.get('/register', (request, response) => {
+app.get('/signup', (request, response) => {
 
     if (database.authenticate(request.cookies['session_cookie'])){
-        response.redirect('/login_confirm');
+        response.redirect('/');
         return;
     }
 
-    Utilities.renderEJS('register.ejs', response);
-
-});
-
-app.get('/login_confirm', (request, response) => {
-
-    if (!database.authenticate(request.cookies['session_cookie'])){
-        response.redirect('/login');
-        return;
-    }
-
-    response.end("Logged in");
-
-});
-
-app.get('/logout_confirm', (request, response) => {
-
-    response.end("Successfully logged out.");
+    Utilities.renderEJS('signup.ejs', response);
 
 });
 
@@ -89,7 +79,6 @@ socketServer.sockets.on('connection', (socket) => {
         try{
             socket.emit('auth_cookie', database.createUser(username, password));
             socket.emit('redirect', '/login_confirm');
-            database.saveConfig();
         }
         catch (e){
             console.log(e);
@@ -97,15 +86,19 @@ socketServer.sockets.on('connection', (socket) => {
 
     });
 
-    socket.on('login', (username, password) => {
+    socket.on('check_user', (user) => {
+        socket.emit('user_result', !database.userExists(user), user);
+    });
+
+    socket.on('signin', (username, password) => {
 
         try{
-            socket.emit('auth_cookie', database.tryLogin(username, password));
+            socket.emit('auth_cookie', database.trySignIn(username, password));
             socket.emit('redirect', '/login_confirm');
             database.saveConfig();
         }
         catch (e){
-            console.log(e);
+            socket.emit('invalid_auth');
         }
 
     });
