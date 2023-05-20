@@ -3,8 +3,16 @@
 		"user": "SuperAdmin",
 		"userSalt": "1038d9899015f8a8",
 		"hashedPassword": "b87df4cc6805bc2119b0aa8a4510d425380b9f244649fa430753f21f0846c9b0",
+		"sessionCookie": "bec4bebb166c047ae79997fb3eaf9c36f6ce9e37358427dfa39402b1782135290d640d5f72f523d6c7511bb9def681245ce3d3403a705ee5b47e8bcd0ac31a9e1b8f83646144e1bb7188076f7aacd14ad113d3adbe4e8013a22f48320d471ac0c410f53cdce985e013e38b60a77cbf075512361045566921ac16f6c40e96fbea",
+		"expiryDate": 1685216375401,
+		"avatar": "avatar-3.png"
+	},
+	{
+		"user": "Sl4sh_",
+		"userSalt": "7dc2bc8759cd10a6",
+		"hashedPassword": "40d2c0bee61f4bdcfd1dd2d14cbac2b5109487c44d7826ad62aed3d3405d7f7e",
 		"sessionCookie": null,
-		"expiryDate": 1684598513445,
+		"expiryDate": 1684611562025,
 		"avatar": "avatar-3.png"
 	}
 ]

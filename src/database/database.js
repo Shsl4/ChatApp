@@ -23,15 +23,14 @@ class User {
 
     static #randomAvatar(){
 
-        const files = fs.readdirSync(resolve(process.cwd() + "/public/assets/images/avatars"));
+        const files = fs.readdirSync(resolve(__dirname + '/../../public/assets/images/avatars'));
 
         let max = files.length - 1;
         let min = 0;
 
         let index = Math.round(Math.random() * (max - min) + min);
-        let file = files[index];
 
-        return file;
+        return files[index];
 
     }
 
@@ -99,6 +98,7 @@ class User {
     }
 
     toJSON(){
+
         return {
             'user': this.#user,
             'userSalt': this.#userSalt,
@@ -107,7 +107,9 @@ class User {
             'expiryDate': this.#expiryDate.valueOf(),
             'avatar': this.#avatar
         };
+
     }
+
 }
 
 class Database {

@@ -46,3 +46,23 @@ function signup(user, password){
 function signin(user, password){
     socket.emit('signin', user, password);
 }
+
+function getRandomFloatString(min, max, decimals) {
+    return (Math.random() * (max - min) + min).toFixed(decimals);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+
+    const elements = document.getElementsByClassName('animated-gradient');
+
+    for (let i = 0; i < elements.length; ++i){
+        elements[i].style.animationDelay = getRandomFloatString(0.0, 10.0, 2.0) + 's';
+    }
+
+    const textElements = document.getElementsByClassName('animated-gradient-text');
+
+    for (let i = 0; i < textElements.length; ++i){
+        textElements[i].style.animationDelay = getRandomFloatString(0.0, 10.0, 2.0) + 's';
+    }
+
+});

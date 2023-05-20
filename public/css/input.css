@@ -1,6 +1,29 @@
+.confirm-button{
+    font-family: "Plus Jakarta Sans", sans-serif;
+    color: white;
+    border: 0;
+    border-radius: 10pt;
+    min-width: 100%;
+    min-height: 30pt;
+    transition: 0.25s;
+}
 
-.form-group{
-    position: relative;
+.confirm-button:hover {
+    filter:brightness(110%);
+    transition: 0.25s;
+}
+
+.confirm-button:active {
+    filter:brightness(90%);
+    transition: 0.25s;
+}
+
+.confirm-button:disabled {
+    background-image: none;
+    animation: none;
+    color: #9B9C9Eff;
+    background-color: #1A1D21ff;
+    pointer-events:none;
 }
 
 .icon{
@@ -12,7 +35,7 @@
     pointer-events:none;
 }
 
-.input-style{
+.icon-input{
     min-width: 250pt;
     min-height: 20pt;
     outline: none;
@@ -20,43 +43,6 @@
     padding: 5pt 5pt 5pt 25pt;
     grid-column: 1;
     grid-row: 1;
-}
-
-.grid{
-    display: grid;
-}
-
-.input-style:focus {
-
-    border: double 2pt transparent;
-    border-radius: 10pt;
-    background-image: linear-gradient(var(--input-background-color), var(--input-background-color)), linear-gradient(160deg, var(--gradient-start), var(--gradient-end));
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
-
-}
-
-.animated-gradient-text {
-    background-image: linear-gradient(160deg, #743ad5, #d53a9d);
-    background-clip: text;
-    color: transparent;
-    animation: anime 10s ease-in-out infinite;
-    background-color: var(--input-background-color);
-    background-size: 200%;
-    pointer-events: all;
-    -webkit-background-clip: text;
-}
-
-@keyframes anime {
-    0% {
-        background-position: 0 50%
-    }
-    50% {
-        background-position: 100% 50%
-    }
-    100% {
-        background-position: 0 50%
-    }
 }
 
 .default-border{
@@ -72,22 +58,4 @@
 
 .error-border{
     border-color: var(--error-color);
-}
-
-.info-div{
-    padding: 2.5pt;
-    font-family: "Plus Jakarta Sans", sans-serif;
-    font-size: 10pt;
-}
-
-.default-hidden {
-    display: none;
-}
-
-.error-color{
-    color: var(--error-color);
-}
-
-.success-color{
-    color: var(--success-color);
 }

@@ -5,14 +5,15 @@
     <title>ChatApp | Home</title>
 </head>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Plus Jakarta Sans">
-<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/shared.css">
 <link rel="stylesheet" href="css/auth.css">
 <link rel="stylesheet" href="css/input.css">
 <link rel="stylesheet" href="css/home.css">
+
 <script src="socket.io/socket.io.js"></script>
 <script type="text/javascript" src="js/shared.js"></script>
 <script src="https://kit.fontawesome.com/a345e0e583.js" crossorigin="anonymous"></script>
-<body class="body-root center-flex">
+<body class="center-flex">
 
     <div class="home-sidebar">
 
@@ -28,12 +29,12 @@
 
                 <div style="display: flex; flex-direction: column; padding-left: 10pt">
 
-                    <label class="text-style"><%=username%></label>
+                    <label class="basic-text"><%=username%></label>
 
                     <div class="left-flex" style="flex-direction: row; align-items: center; gap:0">
 
                         <span class="dot"></span>
-                        <label class="text-style" style="font-size: 8pt; padding-left: 3pt">Online</label>
+                        <label class="basic-text" style="font-size: 8pt; padding-left: 3pt">Online</label>
 
                     </div>
 
@@ -41,7 +42,7 @@
 
             </div>
 
-            <button onclick="document.location.assign('/signout')" class="animated-gradient label-style" style="background-clip:text; border:0; -webkit-background-clip: text; color: transparent;">Sign out</button>
+            <button onclick="document.location.assign('/signout')" class="animated-gradient secondary-text" style="background-clip:text; border:0; -webkit-background-clip: text; color: transparent;">Sign out</button>
 
         </div>
 
@@ -53,16 +54,16 @@
 
             <div class="fields-div center-flex" style="padding: 10pt;">
 
-                <div class="info-div label-style">
+                <div class="secondary-text">
                     <i class="fa-solid fa-screwdriver-wrench fa-10x"></i>
                 </div>
 
-                <label style="font-size: 50px; padding: 0;" class="label-style">Work in progress</label>
+                <label style="font-size: 50px; padding: 0;" class="secondary-text">Work in progress</label>
 
                 <div style="flex-direction: row">
-                    <label style="font-size: 25px; padding: 0;" class="label-style">You are logged in as </label>
-                    <label style="font-size: 25px; padding: 0;" class="label-style animated-gradient-text"><%=username%></label>
-                    <label style="font-size: 25px; padding: 0;" class="label-style">but there is nothing to do... Yet!</label>
+                    <label style="font-size: 25px; padding: 0;" class="secondary-text">You are logged in as </label>
+                    <label style="font-size: 25px; padding: 0;" class="secondary-text animated-gradient-text"><%=username%></label>
+                    <label style="font-size: 25px; padding: 0;" class="secondary-text">but there is nothing to do... Yet!</label>
                 </div>
 
             </div>
@@ -72,7 +73,7 @@
         <div class="home-main-bottom">
 
             <div class="textarea-wrapper">
-                <textarea oninput="refreshInputArea()" placeholder="Type your message here" id="input-area" class="textarea-style text-style"></textarea>
+                <textarea oninput="refreshInputArea()" placeholder="Type your message here" id="input-area" class="textarea-style basic-text"></textarea>
             </div>
 
         </div>

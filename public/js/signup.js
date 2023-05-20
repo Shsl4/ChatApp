@@ -1,4 +1,4 @@
-var usernameVerified = false;
+let usernameVerified = false;
 
 const usernameField = element('username');
 const usernameStatus = element('username-status');
@@ -42,8 +42,7 @@ socket.on('user_result', (success, user) => {
 
     usernameVerified = success;
 
-    setBorderColor(usernameField, success ? successColor : errorColor);
-
+    refreshUsernameField();
     refreshButton();
 
 });
@@ -128,7 +127,7 @@ function refreshUsernameField() {
         setBorderColor(usernameField, idleColor);
     }
     else{
-        setBorderColor(usernameField, validUsername() ? successColor : errorColor);
+        setBorderColor(usernameField, validUsername() && usernameVerified ? successColor : errorColor);
     }
 
     refreshUsernameRequirements();
