@@ -3,7 +3,7 @@ const passwordField = element('password');
 const errorField = element('auth-error');
 const button = element('signin');
 
-var errorState = false;
+let errorState = false;
 
 function refreshButton(){
 

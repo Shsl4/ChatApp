@@ -1,0 +1,121 @@
+
+.home-sidebar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: inherit;
+    height: calc(100% - 20pt);
+    margin: 10pt;
+    min-width: 250pt;
+    max-width: 15%;
+    border-radius: 15pt;
+    background-color: var(--dark-background);
+}
+
+.home-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: inherit;
+    max-width: 85%;
+    height: calc(100% - 20pt);
+    margin: 10pt;
+    border-radius: 15pt;
+    background-color: var(--dark-background);
+}
+
+.home-main-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 92.5%;
+}
+
+.home-main-bottom{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    max-height: 150pt;
+    min-height: 50pt;
+    margin: 10pt;
+    border-top: var(--input-background-color) solid 1pt;
+}
+
+.home-sidebar-content{
+    width: 100%;
+    height: 92.5%;
+}
+
+.home-sidebar-bottom{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 90%;
+    height: inherit;
+    max-height: 7.5%;
+    min-height: 50pt;
+
+    background-image: linear-gradient(160deg, #d53a9d30, #743ad510);
+    border-radius: 15pt;
+    margin: 10pt;
+}
+
+.avatar-frame{
+    padding: 0;
+    margin: 0;
+    width: 30pt;
+    height: 30pt;
+    background-color: transparent;
+}
+
+.dot {
+    height: 8pt;
+    width: 8pt;
+    background-color: var(--success-color);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.textarea-wrapper {
+    padding: 10pt;
+    box-sizing: border-box;
+    max-height: 100pt;
+    width: inherit;
+    max-width: 60%;
+    min-width: 100pt;
+    outline: none;
+    border-width: 2pt;
+    border-style: solid;
+    border-radius: 10pt;
+    background-color: var(--input-background-color);
+    border-color: var(--idle-color);
+    margin-top: 20pt;
+    margin-bottom: 10pt;
+}
+
+.textarea-wrapper:focus-within {
+    border: double 2pt transparent;
+    border-radius: 10pt;
+    background-image: linear-gradient(var(--input-background-color), var(--input-background-color)), linear-gradient(160deg, var(--gradient-start), var(--gradient-end));
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+}
+
+.textarea-style {
+    width: 100%;
+    height: auto;
+    resize: none;
+    overflow: auto; /* Enable scrolling when necessary */
+    box-sizing: border-box;
+    background-color: transparent;
+    max-height: 100%;
+    border: none;
+    outline: none;
+    text-align: justify-all;
+}

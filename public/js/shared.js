@@ -39,8 +39,8 @@ socket.on('auth_cookie', cookie => {
     document.cookie = 'session_cookie=' + cookie + '; SameSite=strict';
 });
 
-function register(user, password){
-    socket.emit('register', user, password);
+function signup(user, password){
+    socket.emit('signup', user, password);
 }
 
 function signin(user, password){

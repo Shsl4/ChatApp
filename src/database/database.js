@@ -18,6 +18,21 @@ class User {
         this.#hashedPassword = this.#hashString(password);
         this.#sessionCookie = null;
         this.#expiryDate = Date.now();
+        this.#avatar = User.#randomAvatar();
+    }
+
+    static #randomAvatar(){
+
+        const files = fs.readdirSync(resolve(process.cwd() + "/public/assets/images/avatars"));
+
+        let max = files.length - 1;
+        let min = 0;
+
+        let index = Math.round(Math.random() * (max - min) + min);
+        let file = files[index];
+
+        return file;
+
     }
 
     static fromObject(obj){
@@ -27,6 +42,7 @@ class User {
         user.#userSalt = obj.userSalt;
         user.#sessionCookie = obj.sessionCookie;
         user.#expiryDate = obj.expiryDate;
+        user.#avatar = obj.avatar;
 
         return user;
 
@@ -34,6 +50,10 @@ class User {
 
     userName(){
         return this.#user;
+    }
+
+    avatarPath() {
+        return this.#avatar;
     }
 
     generateSessionCookie() {
@@ -72,6 +92,7 @@ class User {
     #hashedPassword = "";
     #sessionCookie = "";
     #expiryDate = Date.now();
+    #avatar = "";
 
     static #generateSalt() {
         return randomBytes(8).toString('hex');
@@ -83,7 +104,8 @@ class User {
             'userSalt': this.#userSalt,
             'hashedPassword': this.#hashedPassword,
             'sessionCookie': this.#sessionCookie,
-            'expiryDate': this.#expiryDate.valueOf()
+            'expiryDate': this.#expiryDate.valueOf(),
+            'avatar': this.#avatar
         };
     }
 }
@@ -194,7 +216,7 @@ class Database {
 
     userExists(username) {
 
-        for (var i = 0; i < this.#userDatabase.length; ++i){
+        for (let i = 0; i < this.#userDatabase.length; ++i){
 
             const user = this.#userDatabase[i];
 

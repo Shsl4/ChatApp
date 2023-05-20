@@ -20,7 +20,7 @@ app.get('/', (request, response) => {
     const user = database.authenticate(request.cookies['session_cookie']);
 
     if (user){
-        Utilities.renderEJS('home_auth.ejs', response, { username: user.userName() });
+        Utilities.renderEJS('home_auth.ejs', response, { username: user.userName(), avatar: user.avatarPath() });
     }
     else{
         Utilities.renderEJS('home_public.ejs', response);
@@ -41,9 +41,7 @@ app.get('/signin', (request, response) => {
 
 app.get('/signout', (request, response) => {
 
-    if(database.authenticate(request.cookies['session_cookie'])){
-        database.deauthenticate(request.cookies['session_cookie']);
-    }
+    database.deauthenticate(request.cookies['session_cookie']);
 
     response.redirect('/');
 
@@ -74,11 +72,11 @@ socketServer.listen(httpServer, {
 
 socketServer.sockets.on('connection', (socket) => {
 
-    socket.on('register', (username, password) => {
+    socket.on('signup', (username, password) => {
 
         try{
             socket.emit('auth_cookie', database.createUser(username, password));
-            socket.emit('redirect', '/login_confirm');
+            socket.emit('redirect', '/');
         }
         catch (e){
             console.log(e);
@@ -94,7 +92,7 @@ socketServer.sockets.on('connection', (socket) => {
 
         try{
             socket.emit('auth_cookie', database.trySignIn(username, password));
-            socket.emit('redirect', '/login_confirm');
+            socket.emit('redirect', '/');
             database.saveConfig();
         }
         catch (e){

@@ -23,8 +23,8 @@ function refreshUsernameStatus(){
 
 }
 
-function invokeRegister(){
-    register(usernameField.value, passwordField.value);
+function invokeSignUp(){
+    signup(usernameField.value, passwordField.value);
 }
 
 socket.on('user_result', (success, user) => {
@@ -220,7 +220,7 @@ passwordVerifyField.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
         event.preventDefault();
         if(validUsername() && validPassword() && passwordsMatch() && usernameVerified){
-            invokeRegister();
+            invokeSignUp();
         }
     }
 
