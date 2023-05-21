@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<body>
+
+<div class="main-header">
+    <label class="basic-text" style="padding-left: 25pt">Friends</label>
+</div>
+
+<div id="cards" style="width: 100%">
+
+    <%if(friends.usernames.length > 0) {
+
+    for(let i = 0; i < friends.usernames.length; ++i){%>
+
+    <button class="user-card highlight" onclick="openFriendChannel('<%=friends.usernames[i]%>')">
+
+        <div style="display: flex; flex-direction: row; align-items: center;
+                    justify-content: flex-start; width: 100%; padding-left: 25pt">
+
+            <img class="avatar-frame" src="/assets/images/avatars/<%=friends.avatars[i]%>"/>
+
+            <div style="display: flex; flex-direction: column; padding-left: 10pt">
+
+                <label class="basic-text"><%=friends.usernames[i]%></label>
+
+                <div class="left-flex" style="flex-direction: row; align-items: center; gap:0">
+
+                    <span class="dot"></span>
+                    <label class="basic-text" style="font-size: 8pt; padding-left: 3pt">Online</label>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </button>
+
+    <%}
+    }
+    else{%>
+
+        <div class="user-card">
+
+            <div style="display: flex; flex-direction: row; align-items: center;
+                justify-content: center; width: 100%;">
+
+                <label class="secondary-text">No friends yet</label>
+
+            </div>
+
+        </div>
+
+    <%}%>
+
+</div>
+
+<div class="main-header">
+    <label class="basic-text" style="padding-left: 25pt">Requests</label>
+</div>
+
+<%if(requests.usernames.length > 0) {
+
+    for(let i = 0; i < requests.usernames.length; ++i){%>
+
+<div class="user-card">
+
+    <div style="display: flex; flex-direction: row; align-items: center;
+                    justify-content: flex-start; width: 100%; padding-left: 25pt">
+
+        <img class="avatar-frame" src="/assets/images/avatars/<%=requests.avatars[i]%>"/>
+
+        <div style="display: flex; flex-direction: column; padding-left: 10pt">
+
+            <label class="basic-text"><%=requests.usernames[i]%></label>
+
+            <div class="left-flex" style="flex-direction: row; align-items: center; gap:0">
+
+                <span class="dot"></span>
+                <label class="basic-text" style="font-size: 8pt; padding-left: 3pt">Online</label>
+
+            </div>
+
+        </div>
+
+        <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; gap: 10pt">
+
+            <button class="request-button" onclick="acceptFriend('<%=requests.usernames[i]%>')" style="color: var(--success-color); border-color: var(--success-color);">
+                <i class="fa-solid fa-check fa-2x"></i>
+            </button>
+
+            <button class="request-button" onclick="denyFriend('<%=requests.usernames[i]%>')" style="color: var(--error-color); border-color: var(--error-color);">
+                <i class="fa-solid fa-xmark fa-2x"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <%}
+}
+    else{%>
+
+        <div class="user-card">
+
+            <div style="display: flex; flex-direction: row; align-items: center;
+                justify-content: center; width: 100%;">
+
+                <label class="secondary-text">No friend requests</label>
+
+            </div>
+
+        </div>
+
+<%}%>
+
+
+<div class="main-header">
+    <label class="basic-text" style="padding-left: 25pt">Add friends</label>
+</div>
+
+<input id="add-friend" class="secondary-text user-card" style="padding-left: 20pt; outline: 0; width: 80%" placeholder="Username"></input>
+
+<label id="request-info" class="secondary-text" style="align-self: flex-start; padding-left: 25pt; display: none"></label>
+
+<button class="user-card highlight" style="display: flex; flex-direction: row; align-items: center;
+                justify-content: center; gap: 10pt" onclick="sendFriendRequest()">
+
+    <i class="fa-solid fa-user-group secondary-text"></i>
+    <label class="secondary-text">Send request</label>
+
+</button>
+
+</body>

@@ -1,5 +1,9 @@
 <!DOCTYPE html>
+
 <body>
+
+<%if(messages.length > 0) {%>
+
 <%for(let i = messages.length - 1; i >= 0; --i) {
 
 if(messages[i].sender() === username){ %>
@@ -25,7 +29,7 @@ else{%>
 
 <div class="bubble-wrapper" style="justify-content: flex-start">
 
-    <img class="avatar-frame" style="padding-left: 10pt"  src="/assets/images/avatars/avatar-1.png">
+    <img class="avatar-frame" style="padding-left: 10pt"  src="/assets/images/avatars/avatar-1.png"/>
 
     <div class="other-bubble">
 
@@ -41,6 +45,23 @@ else{%>
 </div>
 <%}
 
-}%>
+}}
+else {%>
+
+    <div class="fields-div center-flex" style="padding: 10pt; height: 100%">
+
+        <div class="info-div secondary-text">
+            <i class="fa-solid fa-comments fa-10x"></i>
+        </div>
+
+        <label style="font-size: 50px; padding: 0;" class="secondary-text">Chat</label>
+
+        <div style="flex-direction: row">
+            <label style="font-size: 25px; padding: 0;" class="secondary-text">Start a conversation with your friends!</label>
+        </div>
+
+    </div>
+
+<%}%>
 
 </body>

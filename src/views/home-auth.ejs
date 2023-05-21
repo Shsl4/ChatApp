@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ChatApp | Home</title>
+</head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Plus Jakarta Sans">
+<link rel="stylesheet" href="css/shared.css">
+<link rel="stylesheet" href="css/auth.css">
+<link rel="stylesheet" href="css/input.css">
+<link rel="stylesheet" href="css/home.css">
+
+<script src="socket.io/socket.io.js"></script>
+<script type="text/javascript" src="js/shared.js"></script>
+<script src="https://kit.fontawesome.com/a345e0e583.js" crossorigin="anonymous"></script>
+<body class="center-flex">
+
+    <div class="home-sidebar">
+
+        <div style="display:flex; flex-direction: column; height: inherit; padding-top: 10pt; padding-bottom: 10pt">
+
+            <button class="sidebar-icon-container" style="justify-self: flex-start">
+                <img class="avatar-frame" src="/assets/images/avatars/<%=avatar%>">
+            </button>
+
+            <div style="display: flex; flex-direction: column; height: 100%; justify-content: flex-start; padding-top: 25pt; gap: 10pt;">
+
+                <button class="sidebar-icon-container" onclick="openFriendsTab()">
+                    <i class="fa-solid fa-user fa-2x"></i>
+                </button>
+
+                <button class="sidebar-icon-container" onclick="openChannelsTab()">
+                    <i class="fa-solid fa-message fa-2x"></i>
+                </button>
+
+            </div>
+
+            <div style="display: flex; flex-direction: column; height: 100%; justify-content: flex-end; gap: 10pt;">
+
+                <button onclick="document.location.assign('/signout')" class="sidebar-icon-container">
+                    <i class="fa-solid fa-power-off fa-2x"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="home-mid" id="home-mid">
+
+    </div>
+
+    <div class="home-main" id="home-main">
+
+    </div>
+
+</body>
+<script type="text/javascript" src="js/home.js"></script>
+</html>

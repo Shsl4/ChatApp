@@ -2,73 +2,39 @@
 	{
 		"name": "Public Channel",
 		"type": "Public",
-		"id": "4d325c6e12f92bb17b1ea223e6a753c6d41c72a7023a14cac57a7c51d4491339",
+		"id": "2bb290e7d6a2553a9240ab78c90f91ae4c3640a2acd94fb5e22aed3bdf2f7bdf",
 		"users": [],
 		"messages": [
 			{
+				"sender": "Sl4sh_",
+				"date": 1684696149539,
+				"content": "Hello"
+			},
+			{
 				"sender": "SuperAdmin",
-				"date": 1684633575859,
+				"date": 1684697467517,
+				"content": "Hey"
+			}
+		]
+	},
+	{
+		"name": "Direct Message",
+		"type": "Direct",
+		"id": "78e9e3678812210b6aeeade0b0750480cd2f54642c220d25aee53e7083a053d8",
+		"users": [
+			"Sl4sh_",
+			"SuperAdmin"
+		],
+		"messages": [
+			{
+				"sender": "Sl4sh_",
+				"date": 1684697457608,
 				"content": "Hello there!"
 			},
 			{
 				"sender": "SuperAdmin",
-				"date": 1684633595108,
-				"content": "How are you?"
-			},
-			{
-				"sender": "SuperAdmin",
-				"date": 1684634101855,
-				"content": "ok"
-			},
-			{
-				"sender": "SuperAdmin",
-				"date": 1684634115113,
-				"content": "I'm alone :("
-			},
-			{
-				"sender": "Sl4sh_",
-				"date": 1684634144238,
-				"content": "Hiiii!"
-			},
-			{
-				"sender": "SuperAdmin",
-				"date": 1684634172477,
-				"content": "Omgee"
-			},
-			{
-				"sender": "Sl4sh_",
-				"date": 1684634175808,
-				"content": "Omgee"
-			},
-			{
-				"sender": "Sl4sh_",
-				"date": 1684634325192,
-				"content": "Hello"
-			},
-			{
-				"sender": "Sl4sh_",
-				"date": 1684634326880,
-				"content": "Hello"
-			},
-			{
-				"sender": "Sl4sh_",
-				"date": 1684634329395,
-				"content": "Hello"
-			},
-			{
-				"sender": "Sl4sh_",
-				"date": 1684634475128,
-				"content": "Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! "
-			},
-			{
-				"sender": "CoolGuy",
-				"date": 1684634518027,
-				"content": "Wassup"
-			},
-			{
-				"sender": "CoolGuy",
-				"date": 1684634522766,
-				"content": "Omgee"
+				"date": 1684697463878,
+				"content": "Yo"
 			}
 		]
 	}

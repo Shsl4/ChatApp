@@ -3,7 +3,6 @@ const express = require('express');
 const { Server } = require('socket.io');
 const Utilities = require("./utils/utilities");
 const { Database } = require('./database/database')
-const { MessageManager } = require("./database/message-manager");
 const serveStatic = require("serve-static");
 const cookieParser = require('cookie-parser');
 const {resolve} = require("path");
@@ -12,7 +11,6 @@ const app = express();
 const httpServer = http.Server(app);
 const socketServer = new Server(httpServer);
 const database = new Database();
-const messageManager = new MessageManager();
 
 app.use(serveStatic(resolve(__dirname + '/../public')));
 app.use(cookieParser());
@@ -22,10 +20,10 @@ app.get('/', (request, response) => {
     const user = database.authenticate(request.cookies['session_cookie']);
 
     if (user){
-        Utilities.renderEJS('home_auth.ejs', response, { username: user.userName(), avatar: user.avatarPath() });
+        Utilities.renderEJS('home-auth.ejs', response, { username: user.userName(), avatar: user.avatarPath() });
     }
     else{
-        Utilities.renderEJS('home_public.ejs', response);
+        Utilities.renderEJS('home-public.ejs', response);
     }
 
 });
@@ -64,21 +62,108 @@ app.get('/refresh-chat', (request, response) => {
 
     let cookie = request.cookies['session_cookie'];
     let user = database.authenticate(cookie);
+    let channelParam = request.query.channel;
+
+    if (user && channelParam){
+
+        let channel = database.getChannel(user.userName(), channelParam);
+
+        if(channel){
+
+            Utilities.renderEJS('messages.ejs', response, {
+                username: user.userName(),
+                messages: channel.messages()
+            })
+
+            return;
+
+        }
+
+    }
+
+    Utilities.renderEJS('unauthorized.ejs', response);
+
+});
+
+app.get('/fetch-chat-view', (request, response) => {
+
+    Utilities.renderEJS('chat-view.ejs', response);
+
+});
+
+app.get('/fetch-friends-view', (request, response) => {
+
+    let cookie = request.cookies['session_cookie'];
+    let user = database.authenticate(cookie);
 
     if (user){
 
-        let channels = messageManager.getUserChannels(user.userName());
+        const username = user.userName();
 
-        Utilities.renderEJS('messages.ejs', response, {
-            username: user.userName(),
-            messages: channels[0].messages()
+        let friends = database.getFriends(username);
+        let requests = database.getFriendRequests(username);
+
+        let avatars = [];
+        let avatars2 = [];
+
+        friends.forEach(name => {
+            avatars.push(database.avatar(name));
         })
+
+        requests.forEach(name => {
+            avatars2.push(database.avatar(name));
+        })
+
+        let friendData = { "usernames": friends, "avatars": avatars}
+        let requestData = { "usernames": requests, "avatars": avatars2}
+
+        Utilities.renderEJS('friends-view.ejs', response, { "friends": friendData, "requests": requestData });
 
         return;
 
     }
 
-    response.end("");
+    response.end();
+
+});
+
+app.get('/fetch-channels-view', (request, response) => {
+
+    let cookie = request.cookies['session_cookie'];
+    let user = database.authenticate(cookie);
+
+    if (user){
+
+        const username = user.userName();
+
+        let channels = database.getUserChannels(username);
+
+        let data = [];
+
+        channels.forEach(channel => {
+
+            let members = channel.members();
+            let name = channel.channelName();
+            let icon = null;
+
+            if(channel.type() === 'Direct'){
+                members.splice(members.indexOf(username), 1);
+                let other = members[0];
+                icon = database.avatar(other);
+                name = other;
+            }
+
+            data.push({ name: name, id: channel.channelId(), icon: icon})
+
+        })
+
+        Utilities.renderEJS('channels-view.ejs', response, { "channels": data });
+
+        return;
+
+    }
+
+    response.end();
 
 });
 
@@ -135,12 +220,80 @@ socketServer.sockets.on('connection', (socket) => {
 
             let username = user.userName();
 
-            if(messageManager.postMessage(username, channel, message)){
-                socketServer.emit('message-posted');
+            if(database.postMessage(username, channel, message)){
+                socketServer.emit('message-posted', channel);
             }
 
         }
 
     });
+
+    socket.on('add-friend', (cookie, friend) => {
+
+        let user = database.authenticate(cookie);
+
+        if(user){
+
+            let username = user.userName();
+
+            try{
+                database.sendFriendRequest(username, friend)
+                socket.broadcast.emit('request-sent');
+                socket.emit('request-succeeded');
+            }
+            catch (error){
+                socket.emit('request-failed', error.message);
+            }
+
+        }
+
+    });
+
+    socket.on('accept-friend', (cookie, friend) => {
+
+        let user = database.authenticate(cookie);
+
+        if(user){
+
+            let username = user.userName();
+            database.acceptFriendRequest(username, friend);
+            socketServer.emit('friend-added');
+
+        }
+
+    });
+
+    socket.on('deny-friend', (cookie, friend) => {
+
+        let user = database.authenticate(cookie);
+
+        if(user){
+
+            let username = user.userName();
+
+            if(database.denyFriendRequest(username, friend)){
+                socketServer.emit('request-sent');
+            }
+
+        }
+
+    });
+
+    socket.on('get-friend-channel', (cookie, friend) => {
+
+        let user = database.authenticate(cookie);
+
+        if(user){
+
+            let username = user.userName();
+            let channel = database.getFriendChannel(username, friend);
+
+            if(channel){
+                socket.emit('friend-channel', channel.channelId());
+            }
+
+        }
+
+    })
 
 });

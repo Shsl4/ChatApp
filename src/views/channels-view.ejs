@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<body>
+
+<div class="main-header">
+    <label class="basic-text" style="padding-left: 25pt">Channels</label>
+</div>
+
+<div id="cards" style="width: 100%">
+
+    <%if(channels.length > 0) {
+
+    for(let i = 0; i < channels.length; ++i){%>
+
+    <button class="channel-card highlight" id="<%=channels[i].id%>" onclick="openChannel('<%=channels[i].id%>')">
+
+        <div style="display: flex; flex-direction: row; align-items: center;
+                    justify-content: flex-start; width: 100%; padding-left: 25pt">
+
+            <%if(channels[i].icon == null) {%>
+                <div class="avatar-frame basic-text" style="display: flex; align-items: center; justify-content: center">
+                    <i class="fa-solid fa-users fa-xl"></i>
+                </div>
+            <%}
+            else {%>
+                <img class="avatar-frame" src="assets/images/avatars/<%=channels[i].icon%>"/>
+            <%}%>
+            <div style="display: flex; flex-direction: column; padding-left: 10pt">
+                <label class="basic-text"><%=channels[i].name%></label>
+            </div>
+        </div>
+
+    </button>
+
+    <%}
+    }
+    else{%>
+
+        <div class="group-card">
+
+            <div style="display: flex; flex-direction: row; align-items: center;
+                justify-content: center; width: 100%;">
+
+                <label class="secondary-text">No conversations yet.</label>
+
+            </div>
+
+        </div>
+
+    <%}%>
+
+</div>
+
+</body>
