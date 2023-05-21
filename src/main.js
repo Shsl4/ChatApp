@@ -79,7 +79,7 @@ app.get('/refresh-chat', (request, response) => {
             Utilities.renderEJS('messages.ejs', response, {
                 username: user.userName(),
                 messages: messages,
-                avatars: avatars
+                avatars: avatars,
             })
 
             return;
@@ -110,11 +110,13 @@ app.get('/fetch-friends-view', (request, response) => {
         let friends = database.getFriends(username);
         let requests = database.getFriendRequests(username);
 
+        let statuses = [];
         let avatars = [];
         let avatars2 = [];
 
         friends.forEach(name => {
             avatars.push(database.avatar(name));
+            statuses.push(database.isOnline(name));
         })
 
         requests.forEach(name => {
@@ -124,7 +126,7 @@ app.get('/fetch-friends-view', (request, response) => {
         let friendData = { "usernames": friends, "avatars": avatars}
         let requestData = { "usernames": requests, "avatars": avatars2}
 
-        Utilities.renderEJS('friends-view.ejs', response, { "friends": friendData, "requests": requestData });
+        Utilities.renderEJS('friends-view.ejs', response, { "friends": friendData, "requests": requestData, "statuses": statuses });
 
         return;
 
@@ -144,7 +146,6 @@ app.get('/fetch-channels-view', (request, response) => {
         const username = user.userName();
 
         let channels = database.getUserChannels(username);
-
         let data = [];
 
         channels.forEach(channel => {
@@ -160,7 +161,7 @@ app.get('/fetch-channels-view', (request, response) => {
                 name = other;
             }
 
-            data.push({ name: name, id: channel.channelId(), icon: icon})
+            data.push({ name: name, id: channel.channelId(), icon: icon, status: database.isOnline(name)});
 
         })
 
@@ -215,8 +216,21 @@ socketServer.sockets.on('connection', (socket) => {
 
     });
 
-    socket.on('disconnect', () => {
+    socket.on('ping', (cookie) => {
 
+        let user = database.authenticate(cookie);
+
+        if(user){
+            user.updateSocketId(socket.id);
+        }
+
+        socketServer.emit('new-connection');
+
+    });
+
+    socket.on('disconnect', () => {
+        database.clearUserWithSocketId(socket.id);
+        socketServer.emit('new-connection');
     });
 
     socket.on('post-message', (cookie, channel, message) => {

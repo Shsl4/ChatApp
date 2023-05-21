@@ -55,6 +55,10 @@ class User {
         return this.#avatar;
     }
 
+    isOnline() {
+        return !!this.#socketId;
+    }
+
     generateSessionCookie() {
         this.#sessionCookie = randomBytes(128).toString('hex');
         this.#expiryDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
@@ -86,12 +90,21 @@ class User {
         return createHash('sha256').update(string + this.#userSalt).digest('hex');
     }
 
+    updateSocketId(newId){
+        this.#socketId = newId;
+    }
+
+    getSocketId() {
+        return this.#socketId;
+    }
+
     #user = "";
     #userSalt = "";
     #hashedPassword = "";
     #sessionCookie = "";
     #expiryDate = Date.now();
     #avatar = "";
+    #socketId = null;
 
     static #generateSalt() {
         return randomBytes(8).toString('hex');
@@ -130,10 +143,16 @@ class Message{
     }
 
     dateString(){
+
         let dt = new Date(this.#date);
         let hours = dt.getHours();
         let mins = dt.getMinutes();
-        return `${hours}:${("0" + mins).slice(-2)}`;
+        let day = ("0" + dt.getUTCDate()).slice(-2);
+        let month = ("0" + (dt.getMonth() + 1)).slice(-2);
+
+        let time = `${hours}:${("0" + mins).slice(-2)}`;
+
+        return `${day}/${month} ${time}`;
     }
 
     content() {
@@ -640,6 +659,49 @@ class Database {
         this.#friendRequests[from].splice(this.#friendRequests[from].indexOf(username), 1);
 
         return true;
+
+    }
+
+    clearUserWithSocketId(socketId) {
+
+        for(let i = 0; i < this.#userDatabase.length; ++i){
+
+            if(this.#userDatabase[i].getSocketId() === socketId){
+                this.#userDatabase[i].updateSocketId(null);
+                return;
+            }
+
+        }
+
+    }
+
+    isOnline(user){
+
+        for(let i = 0; i < this.#userDatabase.length; ++i){
+
+            if(this.#userDatabase[i].userName() === user){
+                return this.#userDatabase[i].isOnline();
+            }
+
+        }
+
+        return false;
+
+    }
+
+    onlineUsers() {
+
+        let list = [];
+
+        this.#userDatabase.forEach(user => {
+
+            if(user.getSocketId()){
+                list.push(user);
+            }
+
+        });
+
+        return list;
 
     }
 

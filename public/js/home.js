@@ -238,3 +238,18 @@ socket.on('request-failed', (reason) => {
     elem.style.display = 'block';
 
 });
+
+socket.on('connect', () => {
+    socket.emit('ping', cookie);
+});
+
+socket.on('new-connection', () => {
+
+    if(currentView === CHANNEL_VIEW){
+        fetchChannelsView();
+    }
+    else{
+        fetchFriendsView();
+    }
+
+});

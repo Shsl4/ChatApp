@@ -5,7 +5,6 @@
     <label class="basic-text" style="padding-left: 25pt">Friends</label>
 </div>
 
-
     <%if(friends.usernames.length > 0) {
 
     for(let i = 0; i < friends.usernames.length; ++i){%>
@@ -20,6 +19,19 @@
             <div style="display: flex; flex-direction: column; padding-left: 10pt">
 
                 <label class="basic-text"><%=friends.usernames[i]%></label>
+
+                <div class="left-flex" style="flex-direction: row; align-items: center; gap:0">
+
+                    <%if(statuses[i]) {%>
+                        <span class="dot" style="background-color: var(--success-color)"></span>
+                        <label class="basic-text" style="font-size: 8pt; padding-left: 3pt">Online</label>
+                    <%}
+                    else {%>
+                            <span class="dot" style="background-color: var(--error-color)"></span>
+                            <label class="basic-text" style="font-size: 8pt; padding-left: 3pt">Offline</label>
+                    <%}%>
+
+                </div>
 
             </div>
 
@@ -64,6 +76,13 @@
 
             <label class="basic-text"><%=requests.usernames[i]%></label>
 
+            <div class="left-flex" style="flex-direction: row; align-items: center; gap:0">
+
+                <span class="dot"></span>
+                <label class="basic-text" style="font-size: 8pt; padding-left: 3pt">Online</label>
+
+            </div>
+
         </div>
 
         <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; gap: 10pt">
@@ -104,9 +123,9 @@
     <label class="basic-text" style="padding-left: 25pt">Add friends</label>
 </div>
 
-<input id="add-friend" class="secondary-text user-card" style="padding-left: 20pt; outline: 0; width: 80%" placeholder="Username"></input>
+<input id="add-friend" class="secondary-text user-card" style="text-align: center; outline: 0;" placeholder="Username"></input>
 
-<label id="request-info" class="secondary-text" style="align-self: flex-start; padding-left: 25pt; display: none"></label>
+<label id="request-info" class="secondary-text" style="align-self: flex-start; padding-left: 25pt; padding-top: 10pt; display: none"></label>
 
 <button class="user-card highlight" style="display: flex; flex-direction: row; align-items: center;
                 justify-content: center; gap: 10pt" onclick="sendFriendRequest()">

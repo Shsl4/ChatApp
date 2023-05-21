@@ -22,6 +22,7 @@
     width: inherit;
     height: inherit;
     padding-bottom: 15pt;
+    padding-top: 15pt;
     gap: 15pt;
 }
 
@@ -120,6 +121,7 @@
     align-items: center;
     justify-content: center;
     width: 85%;
+    min-width: 85%;
     height: 50pt;
     min-height: 50pt;
     border: transparent;
@@ -162,11 +164,12 @@
 .textarea-wrapper {
     padding: 5pt;
     box-sizing: border-box;
-    max-height: inherit;
+    max-height: 80%;
     width: inherit;
     max-width: 60%;
     min-width: 100pt;
     outline: none;
+    overflow: scroll;
     border-width: 2pt;
     border-style: solid;
     border-radius: 10pt;
@@ -174,6 +177,12 @@
     border-color: #48494aff;
     margin-top: 20pt;
     margin-bottom: 20pt;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.textarea-wrapper::-webkit-scrollbar{
+    display: none;
 }
 
 .textarea-wrapper:focus-within {
@@ -195,6 +204,10 @@
     border: none;
     outline: none;
     text-align: justify-all;
+}
+
+.textarea-style:disabled{
+    color: var(--background);
 }
 
 .bubble-wrapper{
@@ -242,7 +255,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    min-width: 100pt;
+    min-width: 125pt;
 }
 
 .request-button{

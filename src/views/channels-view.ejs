@@ -18,13 +18,39 @@
                 <div class="avatar-frame basic-text" style="display: flex; align-items: center; justify-content: center">
                     <i class="fa-solid fa-users fa-xl"></i>
                 </div>
-            <%}
-            else {%>
-                <img class="avatar-frame" src="assets/images/avatars/<%=channels[i].icon%>"/>
-            <%}%>
+
+
             <div style="display: flex; flex-direction: column; padding-left: 10pt">
                 <label class="basic-text"><%=channels[i].name%></label>
             </div>
+
+
+            <%}
+            else {%>
+
+                <img class="avatar-frame" src="assets/images/avatars/<%=channels[i].icon%>"/>
+
+                <div style="display: flex; flex-direction: column; padding-left: 10pt">
+
+                    <label class="basic-text"><%=channels[i].name%></label>
+
+                    <div class="left-flex" style="flex-direction: row; align-items: center; gap:0">
+
+                        <%if(channels[i].status) {%>
+                            <span class="dot" style="background-color: var(--success-color)"></span>
+                            <label class="basic-text" style="font-size: 8pt; padding-left: 3pt">Online</label>
+                        <%}
+                        else {%>
+                            <span class="dot" style="background-color: var(--error-color)"></span>
+                            <label class="basic-text" style="font-size: 8pt; padding-left: 3pt">Offline</label>
+                        <%}%>
+
+                    </div>
+
+                </div>
+            <%}%>
+
+
         </div>
 
     </button>
