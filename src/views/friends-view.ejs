@@ -5,7 +5,6 @@
     <label class="basic-text" style="padding-left: 25pt">Friends</label>
 </div>
 
-<div id="cards" style="width: 100%">
 
     <%if(friends.usernames.length > 0) {
 
@@ -21,13 +20,6 @@
             <div style="display: flex; flex-direction: column; padding-left: 10pt">
 
                 <label class="basic-text"><%=friends.usernames[i]%></label>
-
-                <div class="left-flex" style="flex-direction: row; align-items: center; gap:0">
-
-                    <span class="dot"></span>
-                    <label class="basic-text" style="font-size: 8pt; padding-left: 3pt">Online</label>
-
-                </div>
 
             </div>
 
@@ -52,7 +44,6 @@
 
     <%}%>
 
-</div>
 
 <div class="main-header">
     <label class="basic-text" style="padding-left: 25pt">Requests</label>
@@ -72,13 +63,6 @@
         <div style="display: flex; flex-direction: column; padding-left: 10pt">
 
             <label class="basic-text"><%=requests.usernames[i]%></label>
-
-            <div class="left-flex" style="flex-direction: row; align-items: center; gap:0">
-
-                <span class="dot"></span>
-                <label class="basic-text" style="font-size: 8pt; padding-left: 3pt">Online</label>
-
-            </div>
 
         </div>
 

@@ -67,12 +67,19 @@ app.get('/refresh-chat', (request, response) => {
     if (user && channelParam){
 
         let channel = database.getChannel(user.userName(), channelParam);
+        let messages = channel.messages();
+        let avatars = [];
+
+        messages.forEach(message => {
+            avatars.push(database.avatar(message.sender()));
+        });
 
         if(channel){
 
             Utilities.renderEJS('messages.ejs', response, {
                 username: user.userName(),
-                messages: channel.messages()
+                messages: messages,
+                avatars: avatars
             })
 
             return;
