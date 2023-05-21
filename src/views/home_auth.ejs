@@ -17,32 +17,23 @@
 
     <div class="home-sidebar">
 
-        <div class="home-sidebar-content">
+        <div class="home-sidebar-content center-flex" style="flex-direction: column; gap: 10pt">
 
-        </div>
+            <button class="sidebar-icon-container">
+                <i class="fa-solid fa-user animated-gradient-text fa-2x"></i>
+            </button>
 
-        <div class="home-sidebar-bottom">
+            <button class="sidebar-icon-container">
+                <i class="fa-solid fa-message animated-gradient-text fa-2x"></i>
+            </button>
 
-            <div style="display: flex; flex-direction: row; align-items: center;">
+            <button class="sidebar-icon-container">
+                <i class="fa-solid fa-gear animated-gradient-text fa-2x"></i>
+            </button>
 
+            <button class="sidebar-icon-container" style="justify-self: center">
                 <img class="avatar-frame" src="/assets/images/avatars/<%=avatar%>">
-
-                <div style="display: flex; flex-direction: column; padding-left: 10pt">
-
-                    <label class="basic-text"><%=username%></label>
-
-                    <div class="left-flex" style="flex-direction: row; align-items: center; gap:0">
-
-                        <span class="dot"></span>
-                        <label class="basic-text" style="font-size: 8pt; padding-left: 3pt">Online</label>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <button onclick="document.location.assign('/signout')" class="animated-gradient secondary-text" style="background-clip:text; border:0; -webkit-background-clip: text; color: transparent;">Sign out</button>
+            </button>
 
         </div>
 
@@ -50,23 +41,7 @@
 
     <div class="home-main">
 
-        <div class="home-main-content">
-
-            <div class="fields-div center-flex" style="padding: 10pt;">
-
-                <div class="secondary-text">
-                    <i class="fa-solid fa-screwdriver-wrench fa-10x"></i>
-                </div>
-
-                <label style="font-size: 50px; padding: 0;" class="secondary-text">Work in progress</label>
-
-                <div style="flex-direction: row">
-                    <label style="font-size: 25px; padding: 0;" class="secondary-text">You are logged in as </label>
-                    <label style="font-size: 25px; padding: 0;" class="secondary-text animated-gradient-text"><%=username%></label>
-                    <label style="font-size: 25px; padding: 0;" class="secondary-text">but there is nothing to do... Yet!</label>
-                </div>
-
-            </div>
+        <div id="home-main-content" class="home-main-content">
 
         </div>
 

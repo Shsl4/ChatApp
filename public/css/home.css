@@ -1,24 +1,11 @@
 
-.home-sidebar{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: inherit;
-    height: calc(100% - 20pt);
-    margin: 10pt;
-    min-width: 250pt;
-    max-width: 15%;
-    border-radius: 15pt;
-    background-color: var(--dark-background);
-}
-
 .home-main{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     width: inherit;
-    max-width: 85%;
+    max-width: 95%;
     height: calc(100% - 20pt);
     margin: 10pt;
     border-radius: 15pt;
@@ -27,11 +14,18 @@
 
 .home-main-content{
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
-    justify-content: center;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
     width: 100%;
     height: 92.5%;
+    gap: 15pt;
+}
+
+.home-main-content::-webkit-scrollbar{
+    display: none;
 }
 
 .home-main-bottom{
@@ -46,9 +40,45 @@
     border-top: var(--input-background-color) solid 1pt;
 }
 
+.home-sidebar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: inherit;
+    height: calc(100% - 20pt);
+    margin: 10pt;
+    min-width: 50pt;
+    max-width: 5%;
+    border-radius: 15pt;
+    background-color: var(--dark-background);
+}
+
 .home-sidebar-content{
-    width: 100%;
-    height: 92.5%;
+    width: 65%;
+    height: 50.5%;
+    padding: 5pt;
+    border-radius: 15pt;
+}
+
+.sidebar-icon-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--dark-background);
+    border: var(--background) solid 2pt;
+    min-width: 40pt;
+    min-height: 40pt;
+    border-radius: 10pt;
+}
+
+.sidebar-icon-container:hover {
+    filter: brightness(110%);
+}
+
+.sidebar-icon-container:active {
+    filter: brightness(125%);
 }
 
 .home-sidebar-bottom{
@@ -59,8 +89,7 @@
     width: 90%;
     height: inherit;
     max-height: 7.5%;
-    min-height: 50pt;
-
+    min-height: 150pt;
     background-image: linear-gradient(160deg, #d53a9d30, #743ad510);
     border-radius: 15pt;
     margin: 10pt;
@@ -69,8 +98,8 @@
 .avatar-frame{
     padding: 0;
     margin: 0;
-    width: 30pt;
-    height: 30pt;
+    width: 25pt;
+    height: 25pt;
     background-color: transparent;
 }
 
@@ -111,11 +140,60 @@
     width: 100%;
     height: auto;
     resize: none;
-    overflow: auto; /* Enable scrolling when necessary */
+    overflow: auto;
     box-sizing: border-box;
     background-color: transparent;
     max-height: 100%;
     border: none;
     outline: none;
     text-align: justify-all;
+}
+
+.bubble-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.self-bubble {
+    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 10pt;
+    max-width: 50%;
+    border-radius: 10pt;
+    margin-right: 10pt;
+    gap: 5pt;
+    background-color: var(--background);
+}
+
+.bubble-message{
+    text-align: left;
+    align-self: flex-end;
+    word-break: break-word;
+}
+
+.other-bubble {
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 10pt;
+    border-radius: 10pt;
+    margin-left: 10pt;
+    max-width: 50%;
+    gap: 5pt;
+    background-image: linear-gradient(160deg, var(--gradient-start), var(--gradient-end));
+    animation: anime 10s ease-in-out infinite;
+    background-color: var(--input-background-color);
+    background-size: 200%;
+}
+
+.bubble-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 100pt;
 }

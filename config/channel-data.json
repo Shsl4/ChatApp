@@ -1,0 +1,75 @@
+[
+	{
+		"name": "Public Channel",
+		"type": "Public",
+		"id": "4d325c6e12f92bb17b1ea223e6a753c6d41c72a7023a14cac57a7c51d4491339",
+		"users": [],
+		"messages": [
+			{
+				"sender": "SuperAdmin",
+				"date": 1684633575859,
+				"content": "Hello there!"
+			},
+			{
+				"sender": "SuperAdmin",
+				"date": 1684633595108,
+				"content": "How are you?"
+			},
+			{
+				"sender": "SuperAdmin",
+				"date": 1684634101855,
+				"content": "ok"
+			},
+			{
+				"sender": "SuperAdmin",
+				"date": 1684634115113,
+				"content": "I'm alone :("
+			},
+			{
+				"sender": "Sl4sh_",
+				"date": 1684634144238,
+				"content": "Hiiii!"
+			},
+			{
+				"sender": "SuperAdmin",
+				"date": 1684634172477,
+				"content": "Omgee"
+			},
+			{
+				"sender": "Sl4sh_",
+				"date": 1684634175808,
+				"content": "Omgee"
+			},
+			{
+				"sender": "Sl4sh_",
+				"date": 1684634325192,
+				"content": "Hello"
+			},
+			{
+				"sender": "Sl4sh_",
+				"date": 1684634326880,
+				"content": "Hello"
+			},
+			{
+				"sender": "Sl4sh_",
+				"date": 1684634329395,
+				"content": "Hello"
+			},
+			{
+				"sender": "Sl4sh_",
+				"date": 1684634475128,
+				"content": "Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! Hello this is a very long message! "
+			},
+			{
+				"sender": "CoolGuy",
+				"date": 1684634518027,
+				"content": "Wassup"
+			},
+			{
+				"sender": "CoolGuy",
+				"date": 1684634522766,
+				"content": "Omgee"
+			}
+		]
+	}
+]

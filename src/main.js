@@ -2,7 +2,8 @@ const http = require('http')
 const express = require('express');
 const { Server } = require('socket.io');
 const Utilities = require("./utils/utilities");
-const { Database, User, UserExistsError} = require('./database/database')
+const { Database } = require('./database/database')
+const { MessageManager } = require("./database/message-manager");
 const serveStatic = require("serve-static");
 const cookieParser = require('cookie-parser');
 const {resolve} = require("path");
@@ -11,6 +12,7 @@ const app = express();
 const httpServer = http.Server(app);
 const socketServer = new Server(httpServer);
 const database = new Database();
+const messageManager = new MessageManager();
 
 app.use(serveStatic(resolve(__dirname + '/../public')));
 app.use(cookieParser());
@@ -58,6 +60,28 @@ app.get('/signup', (request, response) => {
 
 });
 
+app.get('/refresh-chat', (request, response) => {
+
+    let cookie = request.cookies['session_cookie'];
+    let user = database.authenticate(cookie);
+
+    if (user){
+
+        let channels = messageManager.getUserChannels(user.userName());
+
+        Utilities.renderEJS('messages.ejs', response, {
+            username: user.userName(),
+            messages: channels[0].messages()
+        })
+
+        return;
+
+    }
+
+    response.end("");
+
+});
+
 app.get('*', (request, response) => {
     response.redirect('/');
 });
@@ -66,9 +90,7 @@ httpServer.listen(8080, () => {
     console.log("Server listening on port 8080");
 });
 
-socketServer.listen(httpServer, {
-    cookie: true
-});
+socketServer.listen(httpServer, {cookie: true});
 
 socketServer.sockets.on('connection', (socket) => {
 
@@ -102,6 +124,22 @@ socketServer.sockets.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
+
+    });
+
+    socket.on('post-message', (cookie, channel, message) => {
+
+        let user = database.authenticate(cookie);
+
+        if(user){
+
+            let username = user.userName();
+
+            if(messageManager.postMessage(username, channel, message)){
+                socketServer.emit('message-posted');
+            }
+
+        }
 
     });
 

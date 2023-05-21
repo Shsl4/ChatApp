@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<body>
+<%for(let i = messages.length - 1; i >= 0; --i) {
+
+if(messages[i].sender() === username){ %>
+
+<div class="bubble-wrapper" style="justify-content: flex-end">
+
+    <div class="self-bubble">
+
+        <div class="bubble-info">
+            <label class="secondary-text"><%=messages[i].sender()%></label>
+            <label class="secondary-text"><%=messages[i].dateString()%></label>
+        </div>
+
+        <label class="basic-text bubble-message"><%=messages[i].content()%></label>
+
+    </div>
+
+    <img class="avatar-frame" style="padding-right: 10pt"  src="/assets/images/avatars/avatar-1.png"/>
+
+</div>
+<%}
+else{%>
+
+<div class="bubble-wrapper" style="justify-content: flex-start">
+
+    <img class="avatar-frame" style="padding-left: 10pt"  src="/assets/images/avatars/avatar-1.png">
+
+    <div class="other-bubble">
+
+        <div class="bubble-info">
+            <label class="secondary-text" style="color: white"><%=messages[i].sender()%></label>
+            <label class="secondary-text" style="color: white"><%=messages[i].dateString()%></label>
+        </div>
+
+        <label class="basic-text bubble-message"><%=messages[i].content()%></label>
+
+    </div>
+
+</div>
+<%}
+
+}%>
+
+</body>

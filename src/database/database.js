@@ -135,7 +135,7 @@ class Database {
 
             });
 
-        })
+        });
 
     }
 
